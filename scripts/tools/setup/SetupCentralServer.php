@@ -27,6 +27,7 @@ use oat\taoEncryption\scripts\tools\SetupUserApplicationKey;
 use oat\taoEncryption\scripts\tools\SetupUserEventSubscription;
 use oat\taoEncryption\scripts\tools\SetupUserSynchronizer;
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterSyncServiceByOrgId;
+use oat\taoOffline\scripts\tools\byOrganisationId\SetupSyncFormByOrgId;
 
 class SetupCentralServer extends ScriptAction
 {
@@ -47,6 +48,7 @@ class SetupCentralServer extends ScriptAction
 
         $report->add($this->runScript(SetupUserSynchronizer::class));
         $report->add($this->runScript(RegisterSyncServiceByOrgId::class));
+        $report->add($this->runScript(SetupSyncFormByOrgId::class));
 
         return $report;
     }

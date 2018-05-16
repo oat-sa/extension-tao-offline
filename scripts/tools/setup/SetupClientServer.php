@@ -28,6 +28,7 @@ use oat\taoEncryption\scripts\tools\SetupEncryptedStateStorage;
 use oat\taoEncryption\scripts\tools\SetupEncryptedSyncResult;
 use oat\taoEncryption\scripts\tools\SetupEncryptedUser;
 use oat\taoEncryption\scripts\tools\SetupUserSynchronizer;
+use oat\taoOffline\scripts\tools\byOrganisationId\SetupSyncFormByOrgId;
 use oat\taoSync\scripts\tool\RegisterHandShakeAuthAdapter;
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterSyncServiceByOrgId;
 
@@ -55,6 +56,7 @@ class SetupClientServer extends ScriptAction
         $report->add($this->runScript(SetupUserSynchronizer::class));
         $report->add($this->runScript(RegisterSyncServiceByOrgId::class));
         $report->add($this->runScript(RegisterHandShakeAuthAdapter::class));
+        $report->add($this->runScript(SetupSyncFormByOrgId::class));
 
         return $report;
     }
