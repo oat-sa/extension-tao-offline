@@ -1,0 +1,73 @@
+<?php
+/**
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; under version 2
+ * of the License (non-upgradable).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * Copyright (c) 2018 (original work) Open Assessment Technologies SA;
+ */
+
+namespace oat\taoOffline\scripts\tools\setup;
+
+use oat\oatbox\extension\script\ScriptAction;
+use oat\taoEncryption\scripts\tools\SetupDeliveryEncrypted;
+use oat\taoEncryption\scripts\tools\SetupEncryptedFileSystem;
+use oat\taoEncryption\scripts\tools\SetupEncryptedMonitoringService;
+use oat\taoEncryption\scripts\tools\SetupEncryptedResultStorage;
+use oat\taoEncryption\scripts\tools\SetupEncryptedStateStorage;
+use oat\taoEncryption\scripts\tools\SetupEncryptedSyncResult;
+use oat\taoEncryption\scripts\tools\SetupEncryptedUser;
+use oat\taoEncryption\scripts\tools\SetupUserSynchronizer;
+use oat\taoOffline\scripts\tools\byOrganisationId\SetupSyncFormByOrgId;
+use oat\taoSync\scripts\tool\RegisterHandShakeAuthAdapter;
+use oat\taoOffline\scripts\tools\byOrganisationId\RegisterSyncServiceByOrgId;
+
+class SetupClientServer extends ScriptAction
+{
+    use RunActionScriptTrait;
+
+    protected $report;
+
+    protected function run()
+    {
+        $report = \common_report_Report::createInfo('Setting up a client server.');
+
+        $report->add($this->runScript(SetupEncryptedResultStorage::class));
+        $report->add($this->runScript(SetupEncryptedSyncResult::class));
+        $report->add($this->runScript(SetupEncryptedStateStorage::class));
+        $report->add($this->runScript(SetupEncryptedMonitoringService::class));
+        $report->add($this->runScript(SetupEncryptedUser::class));
+        $report->add($this->runScript(SetupEncryptedFileSystem::class, [
+            '-f', 'private',
+            '-e', 'taoEncryption/symmetricEncryptionService',
+            '-k', 'taoEncryption/symmetricFileKeyProvider',
+        ]));
+        $report->add($this->runScript(SetupDeliveryEncrypted::class));
+        $report->add($this->runScript(SetupUserSynchronizer::class));
+        $report->add($this->runScript(RegisterSyncServiceByOrgId::class));
+        $report->add($this->runScript(RegisterHandShakeAuthAdapter::class));
+        $report->add($this->runScript(SetupSyncFormByOrgId::class));
+
+        return $report;
+    }
+
+    protected function provideOptions()
+    {
+        return [];
+    }
+
+    protected function provideDescription()
+    {
+        return 'Installation script for a client server. It set up encryption and synchronisation against a central server';
+    }
+}
