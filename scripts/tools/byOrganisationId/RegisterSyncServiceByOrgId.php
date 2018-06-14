@@ -28,11 +28,8 @@ use oat\oatbox\extension\InstallAction;
 use oat\tao\helpers\form\ValidationRuleRegistry;
 use oat\tao\model\TaoOntology;
 use oat\tao\model\WidgetDefinitions;
-use oat\taoDeliveryRdf\model\DeliveryContainerService;
-use oat\taoResultServer\models\classes\implementation\OntologyService;
-use oat\taoDelivery\model\fields\DeliveryFieldsService;
+use oat\taoDeliveryRdf\model\ContainerRuntime;
 use oat\taoDeliveryRdf\model\DeliveryAssemblyService;
-use oat\taoProctoring\model\ProctorService;
 use oat\taoSync\model\Entity;
 use oat\taoSync\model\synchronizer\custom\byOrganisationId\delivery\DeliveryByOrganisationId;
 use oat\taoSync\model\synchronizer\custom\byOrganisationId\user\AdministratorByOrganisationId;
@@ -195,17 +192,14 @@ class RegisterSyncServiceByOrgId extends InstallAction
 
         if (!isset($deliverySynchronizer)) {
             $deliverySynchronizer = new DeliveryByOrganisationId(array(
-                AbstractResourceSynchronizer::OPTIONS_FIELDS => array(
-                    OntologyRdf::RDF_TYPE,
-                    OntologyRdfs::RDFS_LABEL,
-                    OntologyService::PROPERTY_RESULT_SERVER,
-                    DeliveryContainerService::PROPERTY_MAX_EXEC,
-                    DeliveryAssemblyService::PROPERTY_DELIVERY_DISPLAY_ORDER_PROP,
-                    DeliveryContainerService::PROPERTY_ACCESS_SETTINGS,
-                    DeliveryAssemblyService::PROPERTY_END,
-                    DeliveryFieldsService::PROPERTY_CUSTOM_LABEL,
-                    ProctorService::ACCESSIBLE_PROCTOR,
-                    DeliveryAssemblyService::PROPERTY_START,
+                AbstractResourceSynchronizer::OPTIONS_EXCLUDED_FIELDS => array(
+                    TaoOntology::PROPERTY_UPDATED_AT,
+                    Entity::CREATED_AT,
+                    DeliveryAssemblyService::PROPERTY_ORIGIN,
+                    DeliveryAssemblyService::PROPERTY_DELIVERY_DIRECTORY,
+                    DeliveryAssemblyService::PROPERTY_DELIVERY_TIME,
+                    DeliveryAssemblyService::PROPERTY_DELIVERY_RUNTIME,
+                    ContainerRuntime::PROPERTY_CONTAINER,
                 )
             ));
         }
