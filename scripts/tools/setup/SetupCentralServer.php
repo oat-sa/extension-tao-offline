@@ -35,6 +35,10 @@ class SetupCentralServer extends ScriptAction
 
     protected $report;
 
+    /**
+     * @return \common_report_Report
+     * @throws \common_exception_Error
+     */
     protected function run()
     {
         $report = \common_report_Report::createInfo('Setting up a central server.');
