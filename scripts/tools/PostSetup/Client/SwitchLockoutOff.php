@@ -15,16 +15,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * Copyright (c) 2018 (original work) Open Assessment Technologies SA;
- *
  */
 
-namespace oat\taoOffline\scripts\update;
+namespace oat\taoOffline\scripts\tools\PostSetup\Client;
 
-class Updater extends \common_ext_ExtensionUpdater
+use oat\oatbox\extension\InstallAction;
+use oat\tao\model\user\implementation\NoUserLocksService;
+use oat\tao\model\user\UserLocks;
+
+class SwitchLockoutOff extends InstallAction
 {
-    public function update($initialVersion)
+    /**
+     * @param $params
+     * @return \common_report_Report
+     * @throws \common_Exception
+     */
+    public function __invoke($params)
     {
-        $this->skip('0.1.0', '0.2.0');
-    }
+        $this->registerService(UserLocks::SERVICE_ID, new NoUserLocksService());
 
+        return \common_report_Report::createInfo('NoUserLocksService service setup.');
+    }
 }
