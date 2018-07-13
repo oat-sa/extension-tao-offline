@@ -29,6 +29,7 @@ use oat\taoEncryption\scripts\tools\SetupEncryptedSyncResult;
 use oat\taoEncryption\scripts\tools\SetupEncryptedUser;
 use oat\taoEncryption\scripts\tools\SetupUserSynchronizer;
 use oat\taoOffline\scripts\tools\byOrganisationId\SetupSyncFormByOrgId;
+use oat\taoOffline\scripts\tools\PostSetup\Client\SwitchLockoutOff;
 use oat\taoSync\scripts\tool\RegisterHandShakeAuthAdapter;
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterSyncServiceByOrgId;
 
@@ -38,6 +39,10 @@ class SetupClientServer extends ScriptAction
 
     protected $report;
 
+    /**
+     * @return \common_report_Report
+     * @throws \common_exception_Error
+     */
     protected function run()
     {
         $report = \common_report_Report::createInfo('Setting up a client server.');
@@ -57,6 +62,7 @@ class SetupClientServer extends ScriptAction
         $report->add($this->runScript(RegisterSyncServiceByOrgId::class));
         $report->add($this->runScript(RegisterHandShakeAuthAdapter::class));
         $report->add($this->runScript(SetupSyncFormByOrgId::class));
+        $report->add($this->runScript(SwitchLockoutOff::class));
 
         return $report;
     }
