@@ -23,6 +23,7 @@ use oat\oatbox\extension\script\ScriptAction;
 use oat\taoEncryption\scripts\tools\SetupAsymmetricKeys;
 use oat\taoEncryption\scripts\tools\SetupEncryptedSyncResult;
 use oat\taoEncryption\scripts\tools\SetupRdfDeliveryEncrypted;
+use oat\taoEncryption\scripts\tools\SetupSyncTestSessionService;
 use oat\taoEncryption\scripts\tools\SetupUserApplicationKey;
 use oat\taoEncryption\scripts\tools\SetupUserEventSubscription;
 use oat\taoEncryption\scripts\tools\SetupUserSynchronizer;
@@ -48,11 +49,10 @@ class SetupCentralServer extends ScriptAction
         $report->add($this->runScript(SetupUserApplicationKey::class));
         $report->add($this->runScript(SetupRdfDeliveryEncrypted::class));
         $report->add($this->runScript(SetupUserEventSubscription::class));
-
-
         $report->add($this->runScript(SetupUserSynchronizer::class));
         $report->add($this->runScript(RegisterSyncServiceByOrgId::class));
         $report->add($this->runScript(SetupSyncFormByOrgId::class));
+        $report->add($this->runScript(SetupSyncTestSessionService::class));
 
         return $report;
     }
