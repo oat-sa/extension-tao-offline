@@ -21,6 +21,7 @@ namespace oat\taoOffline\scripts\tools\setup;
 
 use oat\oatbox\extension\script\ScriptAction;
 use oat\taoEncryption\scripts\tools\SetupDeliveryEncrypted;
+use oat\taoEncryption\scripts\tools\SetupEncryptedDeliveryLogService;
 use oat\taoEncryption\scripts\tools\SetupEncryptedFileSystem;
 use oat\taoEncryption\scripts\tools\SetupEncryptedMonitoringService;
 use oat\taoEncryption\scripts\tools\SetupEncryptedResultStorage;
@@ -50,6 +51,7 @@ class SetupClientServer extends ScriptAction
         $report->add($this->runScript(SetupEncryptedResultStorage::class));
         $report->add($this->runScript(SetupEncryptedSyncResult::class));
         $report->add($this->runScript(SetupEncryptedStateStorage::class));
+        $report->add($this->runScript(SetupEncryptedDeliveryLogService::class));
         $report->add($this->runScript(SetupEncryptedMonitoringService::class));
         $report->add($this->runScript(SetupEncryptedUser::class));
         $report->add($this->runScript(SetupEncryptedFileSystem::class, [

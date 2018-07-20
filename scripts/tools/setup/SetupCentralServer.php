@@ -21,6 +21,7 @@ namespace oat\taoOffline\scripts\tools\setup;
 
 use oat\oatbox\extension\script\ScriptAction;
 use oat\taoEncryption\scripts\tools\SetupAsymmetricKeys;
+use oat\taoEncryption\scripts\tools\SetupDecryptDeliveryLogFormatterService;
 use oat\taoEncryption\scripts\tools\SetupEncryptedSyncResult;
 use oat\taoEncryption\scripts\tools\SetupRdfDeliveryEncrypted;
 use oat\taoEncryption\scripts\tools\SetupSyncTestSessionService;
@@ -53,6 +54,7 @@ class SetupCentralServer extends ScriptAction
         $report->add($this->runScript(RegisterSyncServiceByOrgId::class));
         $report->add($this->runScript(SetupSyncFormByOrgId::class));
         $report->add($this->runScript(SetupSyncTestSessionService::class));
+        $report->add($this->runScript(SetupDecryptDeliveryLogFormatterService::class));
 
         return $report;
     }
