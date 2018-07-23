@@ -31,6 +31,7 @@ use oat\taoEncryption\scripts\tools\SetupEncryptedUser;
 use oat\taoEncryption\scripts\tools\SetupUserSynchronizer;
 use oat\taoOffline\scripts\tools\byOrganisationId\SetupSyncFormByOrgId;
 use oat\taoOffline\scripts\tools\PostSetup\Client\SwitchLockoutOff;
+use oat\taoSync\scripts\install\AttachReactivateDeliveryExecutionEvent;
 use oat\taoSync\scripts\tool\RegisterHandShakeAuthAdapter;
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterSyncServiceByOrgId;
 
@@ -65,6 +66,7 @@ class SetupClientServer extends ScriptAction
         $report->add($this->runScript(RegisterHandShakeAuthAdapter::class));
         $report->add($this->runScript(SetupSyncFormByOrgId::class));
         $report->add($this->runScript(SwitchLockoutOff::class));
+        $report->add($this->runScript(AttachReactivateDeliveryExecutionEvent::class));
 
         return $report;
     }
