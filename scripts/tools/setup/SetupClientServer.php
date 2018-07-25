@@ -49,19 +49,25 @@ class SetupClientServer extends ScriptAction
     {
         $report = \common_report_Report::createInfo('Setting up a client server.');
 
-        $report->add($this->runScript(SetupEncryptedResultStorage::class));
-        $report->add($this->runScript(SetupEncryptedSyncResult::class));
-        $report->add($this->runScript(SetupEncryptedStateStorage::class));
-        $report->add($this->runScript(SetupEncryptedDeliveryLogService::class));
-        $report->add($this->runScript(SetupEncryptedMonitoringService::class));
-        $report->add($this->runScript(SetupEncryptedUser::class));
-        $report->add($this->runScript(SetupEncryptedFileSystem::class, [
-            '-f', 'private',
-            '-e', 'taoEncryption/symmetricEncryptionService',
-            '-k', 'taoEncryption/symmetricFileKeyProvider',
-        ]));
-        $report->add($this->runScript(SetupDeliveryEncrypted::class));
-        $report->add($this->runScript(SetupUserSynchronizer::class));
+        if ($this->getServiceLocator()->get(\common_ext_ExtensionsManager::SERVICE_ID)->isInstalled('taoEncryption')) {
+            $report->add($this->runScript(SetupEncryptedResultStorage::class));
+            $report->add($this->runScript(SetupEncryptedSyncResult::class));
+            $report->add($this->runScript(SetupEncryptedStateStorage::class));
+            $report->add($this->runScript(SetupEncryptedDeliveryLogService::class));
+            $report->add($this->runScript(SetupEncryptedMonitoringService::class));
+            $report->add($this->runScript(SetupEncryptedUser::class));
+            $report->add($this->runScript(SetupEncryptedFileSystem::class, [
+                '-f', 'private',
+                '-e', 'taoEncryption/symmetricEncryptionService',
+                '-k', 'taoEncryption/symmetricFileKeyProvider',
+            ]));
+            $report->add($this->runScript(SetupDeliveryEncrypted::class));
+            $report->add($this->runScript(SetupUserSynchronizer::class));
+            $this->logNotice('Extension "taoEncryption" is installed, synchronisation data will be encrypted');
+        } else {
+            $this->logWarning('Extension "taoEncryption" is not installed and the synchronisation data is not encrypted');
+        }
+
         $report->add($this->runScript(RegisterSyncServiceByOrgId::class));
         $report->add($this->runScript(RegisterHandShakeAuthAdapter::class));
         $report->add($this->runScript(SetupSyncFormByOrgId::class));
