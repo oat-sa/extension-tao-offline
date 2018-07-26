@@ -21,6 +21,7 @@ namespace oat\taoOffline\scripts\tools\setup;
 
 use oat\oatbox\extension\script\ScriptAction;
 use oat\taoEncryption\scripts\tools\SetupDeliveryEncrypted;
+use oat\taoEncryption\scripts\tools\SetupEncryptedDeliveryLogService;
 use oat\taoEncryption\scripts\tools\SetupEncryptedFileSystem;
 use oat\taoEncryption\scripts\tools\SetupEncryptedMonitoringService;
 use oat\taoEncryption\scripts\tools\SetupEncryptedResultStorage;
@@ -30,6 +31,7 @@ use oat\taoEncryption\scripts\tools\SetupEncryptedUser;
 use oat\taoEncryption\scripts\tools\SetupUserSynchronizer;
 use oat\taoOffline\scripts\tools\byOrganisationId\SetupSyncFormByOrgId;
 use oat\taoOffline\scripts\tools\PostSetup\Client\SwitchLockoutOff;
+use oat\taoSync\scripts\install\AttachReactivateDeliveryExecutionEvent;
 use oat\taoSync\scripts\tool\RegisterHandShakeAuthAdapter;
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterSyncServiceByOrgId;
 
@@ -51,6 +53,7 @@ class SetupClientServer extends ScriptAction
             $report->add($this->runScript(SetupEncryptedResultStorage::class));
             $report->add($this->runScript(SetupEncryptedSyncResult::class));
             $report->add($this->runScript(SetupEncryptedStateStorage::class));
+            $report->add($this->runScript(SetupEncryptedDeliveryLogService::class));
             $report->add($this->runScript(SetupEncryptedMonitoringService::class));
             $report->add($this->runScript(SetupEncryptedUser::class));
             $report->add($this->runScript(SetupEncryptedFileSystem::class, [
@@ -69,6 +72,7 @@ class SetupClientServer extends ScriptAction
         $report->add($this->runScript(RegisterHandShakeAuthAdapter::class));
         $report->add($this->runScript(SetupSyncFormByOrgId::class));
         $report->add($this->runScript(SwitchLockoutOff::class));
+        $report->add($this->runScript(AttachReactivateDeliveryExecutionEvent::class));
 
         return $report;
     }

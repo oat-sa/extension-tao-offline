@@ -21,6 +21,7 @@ namespace oat\taoOffline\scripts\tools\setup;
 
 use oat\oatbox\extension\script\ScriptAction;
 use oat\taoEncryption\scripts\tools\SetupAsymmetricKeys;
+use oat\taoEncryption\scripts\tools\SetupDecryptDeliveryLogFormatterService;
 use oat\taoEncryption\scripts\tools\SetupEncryptedSyncResult;
 use oat\taoEncryption\scripts\tools\SetupRdfDeliveryEncrypted;
 use oat\taoEncryption\scripts\tools\SetupSyncTestSessionService;
@@ -52,6 +53,7 @@ class SetupCentralServer extends ScriptAction
             $report->add($this->runScript(SetupUserEventSubscription::class));
             $report->add($this->runScript(SetupSyncTestSessionService::class));
             $report->add($this->runScript(SetupUserSynchronizer::class));
+            $report->add($this->runScript(SetupDecryptDeliveryLogFormatterService::class));
             $this->logNotice('Extension "taoEncryption" is installed, synchronisation data will be encrypted');
         } else {
             $this->logWarning('Extension "taoEncryption" is not installed and the synchronisation data is not encrypted');
