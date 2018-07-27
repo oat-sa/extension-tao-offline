@@ -21,6 +21,7 @@ namespace oat\taoOffline\scripts\tools\setup;
 
 use oat\oatbox\extension\script\ScriptAction;
 use oat\taoEncryption\scripts\tools\SetupAsymmetricKeys;
+use oat\taoEncryption\scripts\tools\SetupDecryptDeliveryLogFormatterService;
 use oat\taoEncryption\scripts\tools\SetupEncryptedSyncResult;
 use oat\taoEncryption\scripts\tools\SetupRdfDeliveryEncrypted;
 use oat\taoEncryption\scripts\tools\SetupSyncTestSessionService;
@@ -44,15 +45,22 @@ class SetupCentralServer extends ScriptAction
     {
         $report = \common_report_Report::createInfo('Setting up a central server.');
 
-        $report->add($this->runScript(SetupAsymmetricKeys::class, ['generate']));
-        $report->add($this->runScript(SetupEncryptedSyncResult::class));
-        $report->add($this->runScript(SetupUserApplicationKey::class));
-        $report->add($this->runScript(SetupRdfDeliveryEncrypted::class));
-        $report->add($this->runScript(SetupUserEventSubscription::class));
-        $report->add($this->runScript(SetupUserSynchronizer::class));
+        if ($this->getServiceLocator()->get(\common_ext_ExtensionsManager::SERVICE_ID)->isInstalled('taoEncryption')) {
+            $report->add($this->runScript(SetupAsymmetricKeys::class, ['generate']));
+            $report->add($this->runScript(SetupEncryptedSyncResult::class));
+            $report->add($this->runScript(SetupUserApplicationKey::class));
+            $report->add($this->runScript(SetupRdfDeliveryEncrypted::class));
+            $report->add($this->runScript(SetupUserEventSubscription::class));
+            $report->add($this->runScript(SetupSyncTestSessionService::class));
+            $report->add($this->runScript(SetupUserSynchronizer::class));
+            $report->add($this->runScript(SetupDecryptDeliveryLogFormatterService::class));
+            $this->logNotice('Extension "taoEncryption" is installed, synchronisation data will be encrypted');
+        } else {
+            $this->logWarning('Extension "taoEncryption" is not installed and the synchronisation data is not encrypted');
+        }
+
         $report->add($this->runScript(RegisterSyncServiceByOrgId::class));
         $report->add($this->runScript(SetupSyncFormByOrgId::class));
-        $report->add($this->runScript(SetupSyncTestSessionService::class));
 
         return $report;
     }
