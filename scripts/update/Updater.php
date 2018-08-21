@@ -24,7 +24,10 @@ class Updater extends \common_ext_ExtensionUpdater
 {
     public function update($initialVersion)
     {
+<<<<<<< Updated upstream
         $this->skip('0.1.0', '1.1.0');
+=======
+        $this->skip('0.1.0', '0.3.0');
+>>>>>>> Stashed changes
     }
-
 }
