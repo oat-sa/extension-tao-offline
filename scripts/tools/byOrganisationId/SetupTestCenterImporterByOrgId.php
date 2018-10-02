@@ -28,9 +28,12 @@ use oat\taoTestCenter\model\import\TestCenterCsvImporterFactory;
 class SetupTestCenterImporterByOrgId extends InstallAction
 {
     /**
+     * Add organisation id property to test center importer
+     *
      * @param array $params
-     * @throws \common_Exception
+     * @return \common_report_Report
      * @throws InvalidServiceManagerException
+     * @throws \common_Exception
      */
     public function __invoke($params=array())
     {
@@ -46,5 +49,7 @@ class SetupTestCenterImporterByOrgId extends InstallAction
         $importerFactory->setOption(TestCenterCsvImporterFactory::OPTION_DEFAULT_SCHEMA, $schema);
 
         $this->getServiceManager()->register(TestCenterCsvImporterFactory::SERVICE_ID, $importerFactory);
+
+        return \common_report_Report::createSuccess(__('TestCenterImporter has been successfully registered.'));
     }
 }
