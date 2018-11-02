@@ -28,6 +28,7 @@ use oat\taoEncryption\scripts\tools\SetupEncryptedResultStorage;
 use oat\taoEncryption\scripts\tools\SetupEncryptedStateStorage;
 use oat\taoEncryption\scripts\tools\SetupEncryptedSyncResult;
 use oat\taoEncryption\scripts\tools\SetupEncryptedUser;
+use oat\taoEncryption\scripts\tools\SetupPhpCompilationCacheOff;
 use oat\taoEncryption\scripts\tools\SetupUserSynchronizer;
 use oat\taoOffline\scripts\tools\byOrganisationId\SetupSyncFormByOrgId;
 use oat\taoOffline\scripts\tools\PostSetup\Client\SwitchLockoutOff;
@@ -73,6 +74,7 @@ class SetupClientServer extends ScriptAction
         $report->add($this->runScript(SetupSyncFormByOrgId::class));
         $report->add($this->runScript(SwitchLockoutOff::class));
         $report->add($this->runScript(AttachReactivateDeliveryExecutionEvent::class));
+        $report->add($this->runScript(SetupPhpCompilationCacheOff::class));
 
         return $report;
     }
