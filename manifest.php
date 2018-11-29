@@ -31,7 +31,7 @@ return array(
     'author' => 'Open Assessment Technologies SA',
     'requires' => array(
         'taoTestCenter' => '>=3.15.0',
-        'taoSync' => '>=1.6.0'
+        'taoSync' => '>=2.2.0'
     ),
     'update' => oat\taoOffline\scripts\update\Updater::class,
     'managementRole' => 'http://www.tao.lu/Ontologies/generis.rdf#taoOfflineManager',

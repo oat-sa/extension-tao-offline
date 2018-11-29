@@ -34,6 +34,7 @@ use oat\taoOffline\scripts\tools\PostSetup\Client\SwitchLockoutOff;
 use oat\taoSync\scripts\install\AttachReactivateDeliveryExecutionEvent;
 use oat\taoSync\scripts\tool\RegisterHandShakeAuthAdapter;
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterSyncServiceByOrgId;
+use oat\taoSync\scripts\tool\synchronisationHistory\SetupClientSynchronisationHistory;
 
 class SetupClientServer extends ScriptAction
 {
