@@ -74,6 +74,7 @@ class SetupClientServer extends ScriptAction
         $report->add($this->runScript(SetupSyncFormByOrgId::class));
         $report->add($this->runScript(SwitchLockoutOff::class));
         $report->add($this->runScript(AttachReactivateDeliveryExecutionEvent::class));
+        $report->add($this->runScript(SetupClientSynchronisationHistory::class));
 
         return $report;
     }
