@@ -1,0 +1,6 @@
+@startuml
+ClientServer -> CentralServer: Request User
+CentralServer -> CentralServer: Fetch User
+CentralServer -> CentralServer: Encrypt User proprieties
+CentralServer -> ClientServer: Send User Encrypted
+@enduml

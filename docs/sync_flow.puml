@@ -1,0 +1,12 @@
+@startuml
+CentralServer -> CentralServer: Create Test Center and assign Organisation ID
+CentralServer -> CentralServer: Assign a Sync Manager
+CentralServer -> CentralServer: Create eligibility and assign users
+
+ClientServer --> CentralServer: HandShake (Login as one of the Sync Manager)
+ClientServer --> CentralServer: Start Sync Process
+ClientServer --> ClientServer: Test Takers Taking the test
+ClientServer --> CentralServer: Start Sync Process (Sync of results)
+CentralServer --> CentralServer: Dispatch task to decrypt the result
+
+@enduml
