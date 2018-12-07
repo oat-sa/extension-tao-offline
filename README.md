@@ -37,10 +37,10 @@ sudo -u www-data php index.php 'oat\taoOffline\scripts\tools\setup\SetupCentralS
  * Results Logs
 
 
-###### Overview Flow
+##### Overview Flow
 ![alt text](docs/sync_flow.png)
 
-###### Sync Users with encryption
+##### Sync Users with encryption
 Each users has assign to him the application id in order to have access to the delivery content.
 The properties that be excluded in the process of sync can be found in the `excludedProperties` in the config
 `config/taoSync/syncService.conf.php`
@@ -49,7 +49,7 @@ In terms of encryption the properties that be encrypted are determined in `confi
 
 ![alt text](docs/sync_users.png)
 
-###### Sync Deliveries with encryption
+##### Sync Deliveries with encryption
 On each delivery sync the test package it's send to the client, the client it's importing the test and generating a delivery. 
 _Note_: 
 > In a case that we are syncing a delivery already existing on the VM a new import of the test will exist.
@@ -66,7 +66,7 @@ Each request to the server will include the no of results, the process will stop
 
 ![alt text](docs/sync_results.png)
 
-###### Sync Results Logs
+##### Sync Results Logs
 Each result log are synced to the central server in order to have a history of the test.
 The number of logs sent in one request it's determined in the config of `config/taoSync/SyncDeliveryLogService.conf.php`
 
