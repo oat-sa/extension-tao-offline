@@ -1,0 +1,6 @@
+@startuml
+ClientServer -> CentralServer: Request Delivery
+CentralServer -> CentralServer: Fetch Delivery Test Package
+CentralServer -> ClientServer: Send Delivery Test Package
+ClientServer -> ClientServer: Generate Delivery based on Test Package and encrypt
+@enduml
