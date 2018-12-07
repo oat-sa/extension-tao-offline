@@ -38,6 +38,9 @@ sudo -u www-data php index.php 'oat\taoOffline\scripts\tools\setup\SetupCentralS
 
 
 ##### Overview Flow
+![alt text](docs/overview_sync.png)
+
+###### Sequence Diagram
 ![alt text](docs/sync_flow.png)
 
 ##### Sync Users with encryption
