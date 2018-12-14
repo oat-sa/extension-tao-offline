@@ -1,0 +1,6 @@
+@startuml
+ClientServer -> ClientServer: Gather Results
+ClientServer -> CentralServer: Send Results (No of results can be found in config: `chunksize`)
+CentralServer -> CentralServer: Dispatch task to decrypt result
+CentralServer -> ClientServer: Send acknowledge result saved
+@enduml
