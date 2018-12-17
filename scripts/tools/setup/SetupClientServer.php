@@ -35,6 +35,9 @@ use oat\taoSync\scripts\install\AttachReactivateDeliveryExecutionEvent;
 use oat\taoSync\scripts\tool\RegisterHandShakeAuthAdapter;
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterSyncServiceByOrgId;
 use oat\taoSync\scripts\tool\synchronisationHistory\SetupClientSynchronisationHistory;
+use oat\taoSync\scripts\tool\synchronizationLog\RegisterRdsSyncLogStorage;
+use oat\taoSync\scripts\tool\synchronizationLog\RegisterClientSyncLogListener;
+use oat\taoSync\scripts\tool\synchronizationLog\RegisterSyncLogService;
 
 class SetupClientServer extends ScriptAction
 {
@@ -75,6 +78,9 @@ class SetupClientServer extends ScriptAction
         $report->add($this->runScript(SwitchLockoutOff::class));
         $report->add($this->runScript(AttachReactivateDeliveryExecutionEvent::class));
         $report->add($this->runScript(SetupClientSynchronisationHistory::class));
+        $report->add($this->runScript(RegisterClientSyncLogListener::class));
+        $report->add($this->runScript(RegisterRdsSyncLogStorage::class));
+        $report->add($this->runScript(RegisterSyncLogService::class));
 
         return $report;
     }
