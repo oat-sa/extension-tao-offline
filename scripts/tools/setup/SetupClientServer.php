@@ -38,6 +38,7 @@ use oat\taoSync\scripts\tool\synchronisationHistory\SetupClientSynchronisationHi
 use oat\taoSync\scripts\tool\synchronizationLog\RegisterRdsSyncLogStorage;
 use oat\taoSync\scripts\tool\synchronizationLog\RegisterClientSyncLogListener;
 use oat\taoSync\scripts\tool\synchronizationLog\RegisterSyncLogService;
+use oat\taoSync\scripts\tool\synchronizationLog\RegisterSyncStatusListener;
 
 class SetupClientServer extends ScriptAction
 {
@@ -79,6 +80,7 @@ class SetupClientServer extends ScriptAction
         $report->add($this->runScript(AttachReactivateDeliveryExecutionEvent::class));
         $report->add($this->runScript(SetupClientSynchronisationHistory::class));
         $report->add($this->runScript(RegisterClientSyncLogListener::class));
+        $report->add($this->runScript(RegisterSyncStatusListener::class));
         $report->add($this->runScript(RegisterRdsSyncLogStorage::class));
         $report->add($this->runScript(RegisterSyncLogService::class));
 
