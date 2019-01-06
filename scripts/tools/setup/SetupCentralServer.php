@@ -31,7 +31,7 @@ use oat\taoEncryption\scripts\tools\SetupUserSynchronizer;
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterSyncServiceByOrgId;
 use oat\taoOffline\scripts\tools\byOrganisationId\SetupSyncFormByOrgId;
 use oat\taoSync\scripts\install\SetupAssignedTestCenterSyncUser;
-use oat\taoSync\scripts\tool\synchronizationLog\RegisterCentralSyncLogListener;
+use oat\taoSync\scripts\tool\SyncLog\RegisterCentralSyncLogListener;
 
 class SetupCentralServer extends ScriptAction
 {
