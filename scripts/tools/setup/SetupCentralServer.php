@@ -31,6 +31,8 @@ use oat\taoEncryption\scripts\tools\SetupUserSynchronizer;
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterSyncServiceByOrgId;
 use oat\taoOffline\scripts\tools\byOrganisationId\SetupSyncFormByOrgId;
 use oat\taoSync\scripts\install\SetupAssignedTestCenterSyncUser;
+use oat\taoSync\scripts\tool\synchronisationHistory\SetupCentralSynchronizationHistory;
+use oat\taoSync\scripts\tool\SyncLog\RegisterCentralSyncLogListener;
 
 class SetupCentralServer extends ScriptAction
 {
@@ -63,6 +65,8 @@ class SetupCentralServer extends ScriptAction
         $report->add($this->runScript(RegisterSyncServiceByOrgId::class));
         $report->add($this->runScript(SetupSyncFormByOrgId::class));
         $report->add($this->runScript(SetupAssignedTestCenterSyncUser::class));
+        $report->add($this->runScript(RegisterCentralSyncLogListener::class));
+        $report->add($this->runScript(SetupCentralSynchronizationHistory::class));
 
         return $report;
     }
