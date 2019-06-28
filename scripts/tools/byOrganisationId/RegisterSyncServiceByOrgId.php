@@ -91,6 +91,9 @@ class RegisterSyncServiceByOrgId extends InstallAction
             WidgetRdf::PROPERTY_WIDGET => WidgetDefinitions::PROPERTY_TEXTBOX,
             TaoOntology::PROPERTY_GUI_ORDER => 1,
         ));
+
+        $property->setPropertiesValues([ValidationRuleRegistry::PROPERTY_VALIDATION_RULE => 'unique']);
+
     }
 
     /**
