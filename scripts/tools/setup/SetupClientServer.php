@@ -29,6 +29,7 @@ use oat\taoEncryption\scripts\tools\SetupEncryptedStateStorage;
 use oat\taoEncryption\scripts\tools\SetupEncryptedSyncResult;
 use oat\taoEncryption\scripts\tools\SetupEncryptedUser;
 use oat\taoEncryption\scripts\tools\SetupUserSynchronizer;
+use oat\taoOffline\scripts\tools\byOrganisationId\RewriteTestCenterManagerService;
 use oat\taoOffline\scripts\tools\byOrganisationId\SetupSyncFormByOrgId;
 use oat\taoOffline\scripts\tools\PostSetup\Client\DetachDeliveryCreateListeners;
 use oat\taoOffline\scripts\tools\PostSetup\Client\SwitchLockoutOff;
@@ -81,6 +82,7 @@ class SetupClientServer extends ScriptAction
         $report->add($this->runScript(RegisterClientSyncLogListener::class));
         $report->add($this->runScript(RegisterSyncStatusListener::class));
         $report->add($this->runScript(DetachDeliveryCreateListeners::class));
+        $report->add($this->runScript(RewriteTestCenterManagerService::class));
 
         return $report;
     }
