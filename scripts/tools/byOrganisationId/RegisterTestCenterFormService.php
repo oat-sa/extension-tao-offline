@@ -20,26 +20,28 @@
 
 namespace oat\taoOffline\scripts\tools\byOrganisationId;
 
+use common_Exception;
+use common_report_Report;
 use oat\oatbox\extension\InstallAction;
-use oat\taoOffline\model\service\TestCenterService;
+use oat\taoOffline\model\service\TestCenterFormService;
 
 /**
- * Class RegisterSyncService
+ * Class RegisterTestCenterFormService
  *
- * sudo -u www-data php index.php '\oat\taoOffline\scripts\tools\byOrganisationId\RewriteTestCenterManagerService'
+ * sudo -u www-data php index.php '\oat\taoOffline\scripts\tools\byOrganisationId\RegisterTestCenterFormService'
  *
  * @package oat\taoOffline\scripts\tools\byOrganisationId
  */
-class RewriteTestCenterManagerService extends InstallAction
+class RegisterTestCenterFormService extends InstallAction
 {
+    /**
+     * @param $params
+     * @return common_report_Report
+     * @throws common_Exception
+     */
     public function __invoke($params)
     {
-        $options = [];
-        if ($this->getServiceManager()->has(TestCenterService::SERVICE_ID)) {
-            $options = $this->getServiceLocator()->get(TestCenterService::SERVICE_ID)->getOptions();
-        }
-
-        $this->getServiceManager()->register(TestCenterService::SERVICE_ID, new TestCenterService($options));
-        return \common_report_Report::createSuccess(__('TestCenterManagerService has been successfully updated.'));
+        $this->getServiceManager()->register(TestCenterFormService::SERVICE_ID, new TestCenterFormService());
+        return \common_report_Report::createSuccess(__('TestCenterFormService has been successfully registered.'));
     }
 }
