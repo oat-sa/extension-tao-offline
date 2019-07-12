@@ -23,15 +23,13 @@ namespace oat\taoOffline\model\service;
 use common_exception_Error;
 use core_kernel_classes_Class;
 use core_kernel_classes_Resource;
-use oat\oatbox\service\ConfigurableService;
 use oat\taoOffline\model\form\TestCenterForm;
 use oat\taoSync\model\synchronizer\custom\byOrganisationId\testcenter\TestCenterByOrganisationId;
+use oat\taoTestCenter\model\TestCenterFormService;
 use tao_helpers_form_FormContainer as FormContainer;
 
-class TestCenterFormService extends ConfigurableService
+class TaoOfflineTestCenterFormService extends TestCenterFormService
 {
-    const SERVICE_ID = 'taoTestCenter/TestCenterFormService';
-
     /**
      * @param core_kernel_classes_Class $clazz
      * @param core_kernel_classes_Resource|null $testCenter

@@ -4,7 +4,7 @@ namespace oat\taoOffline\model\form;
 
 use core_kernel_classes_Class;
 use core_kernel_classes_Resource;
-use oat\taoOffline\model\service\TestCenterFormService;
+use oat\taoOffline\model\service\TaoOfflineTestCenterFormService;
 use oat\taoSync\model\synchronizer\custom\byOrganisationId\testcenter\TestCenterByOrganisationId;
 use tao_actions_form_Instance;
 use tao_helpers_form_FormFactory;
@@ -13,19 +13,19 @@ use tao_helpers_Uri;
 class TestCenterForm extends tao_actions_form_Instance
 {
     /**
-     * @var TestCenterFormService
+     * @var TaoOfflineTestCenterFormService
      */
     private $testCenterFormService;
 
     /**
-     * @param TestCenterFormService $testCenterFormService
+     * @param TaoOfflineTestCenterFormService $testCenterFormService
      * @param core_kernel_classes_Class $clazz
      * @param core_kernel_classes_Resource|null $instance
      * @param array $options
      * @return mixed
      */
     public function __construct (
-        TestCenterFormService $testCenterFormService,
+        TaoOfflineTestCenterFormService $testCenterFormService,
         core_kernel_classes_Class $clazz,
         core_kernel_classes_Resource $instance = null,
         $options = []

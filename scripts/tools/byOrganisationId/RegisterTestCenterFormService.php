@@ -23,7 +23,8 @@ namespace oat\taoOffline\scripts\tools\byOrganisationId;
 use common_Exception;
 use common_report_Report;
 use oat\oatbox\extension\InstallAction;
-use oat\taoOffline\model\service\TestCenterFormService;
+use oat\taoOffline\model\service\TaoOfflineTestCenterFormService;
+use oat\taoTestCenter\model\TestCenterFormService;
 
 /**
  * Class RegisterTestCenterFormService
@@ -41,7 +42,10 @@ class RegisterTestCenterFormService extends InstallAction
      */
     public function __invoke($params)
     {
-        $this->getServiceManager()->register(TestCenterFormService::SERVICE_ID, new TestCenterFormService());
+        $this->getServiceManager()->register(
+            TestCenterFormService::SERVICE_ID,
+            new TaoOfflineTestCenterFormService()
+        );
         return \common_report_Report::createSuccess(__('TestCenterFormService has been successfully registered.'));
     }
 }

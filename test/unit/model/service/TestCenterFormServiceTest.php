@@ -23,13 +23,13 @@ use common_Exception;
 use core_kernel_classes_Class;
 use core_kernel_classes_Resource;
 use oat\generis\test\TestCase;
-use oat\taoOffline\model\service\TestCenterFormService;
+use oat\taoOffline\model\service\TaoOfflineTestCenterFormService;
 use PHPUnit_Framework_MockObject_MockObject;
 
 class TestCenterFormServiceTest extends TestCase
 {
     /**
-     * @var TestCenterFormService|PHPUnit_Framework_MockObject_MockObject
+     * @var TaoOfflineTestCenterFormService|PHPUnit_Framework_MockObject_MockObject
      */
     private $serviceMock;
 
@@ -44,7 +44,7 @@ class TestCenterFormServiceTest extends TestCase
 
         $this->classMock = $this->createMock(core_kernel_classes_Class::class);
 
-        $this->serviceMock = $this->getMockBuilder(TestCenterFormService::class)
+        $this->serviceMock = $this->getMockBuilder(TaoOfflineTestCenterFormService::class)
             ->setMethods(['getClass'])
             ->disableOriginalConstructor()
             ->getMock();
