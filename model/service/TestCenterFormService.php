@@ -52,9 +52,7 @@ class TestCenterFormService extends ConfigurableService
      */
     public function validateOrganisationIdValue($value, $uri = null)
     {
-        $class = new core_kernel_classes_Class(TestCenterService::CLASS_URI);
-
-        $resources = $class->searchInstances(
+        $resources = $this->getClass()->searchInstances(
             [TestCenterByOrganisationId::ORGANISATION_ID_PROPERTY => $value],
             ['recursive' => true, 'like' => false]
         );
@@ -71,5 +69,14 @@ class TestCenterFormService extends ConfigurableService
             return false;
         }
         return true;
+    }
+
+    /**
+     * @return core_kernel_classes_Class
+     * @throws common_exception_Error
+     */
+    protected function getClass()
+    {
+        return new core_kernel_classes_Class(TestCenterService::CLASS_URI);
     }
 }

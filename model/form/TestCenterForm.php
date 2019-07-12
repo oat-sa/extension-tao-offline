@@ -28,7 +28,7 @@ class TestCenterForm extends tao_actions_form_Instance
         TestCenterFormService $testCenterFormService,
         core_kernel_classes_Class $clazz,
         core_kernel_classes_Resource $instance = null,
-        $options = array()
+        $options = []
     ) {
         $this->testCenterFormService = $testCenterFormService;
         parent::__construct($clazz, $instance, $options);
@@ -47,12 +47,12 @@ class TestCenterForm extends tao_actions_form_Instance
 
         if ($element) {
             $element->addValidator(
-                tao_helpers_form_FormFactory::getValidator('Callback', array(
-                    'message' => __('Organisation Id Must be unique'),
+                tao_helpers_form_FormFactory::getValidator('Callback', [
+                    'message' => __('Organisation Id must be unique'),
                     'object' => $this->testCenterFormService,
                     'method' => 'validateOrganisationIdValue',
                     'param' => $this->instance ? $this->instance->getUri() : null
-                ))
+                ])
             );
         }
     }
