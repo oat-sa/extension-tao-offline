@@ -18,7 +18,7 @@ class TestCenterMapper extends OntologyMapper
     public function map(array $data = [])
     {
         parent::map($data);
-        $this->buildUniqueProperties($data);
+        $this->validateUniqueProperties($data);
         return $this;
     }
 
@@ -26,7 +26,7 @@ class TestCenterMapper extends OntologyMapper
      * @param array $data
      * @throws UniqueFieldException|common_Exception
      */
-    public function buildUniqueProperties(array $data)
+    private function validateUniqueProperties(array $data)
     {
        if (!$this->getValidator()->validateOrganisationIdValue($data['organisation id'])) {
            throw new UniqueFieldException(
