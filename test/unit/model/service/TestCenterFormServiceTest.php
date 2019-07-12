@@ -87,12 +87,12 @@ class TestCenterFormServiceTest extends TestCase
             ->getMock();
 
         $resourceMock->method('getUri')->willReturn('uri');
+
         return [
             [[], null, false],
             [[0 => $resourceMock], null, true],
             [[0 => $resourceMock], 'uri', false],
             [[0 => $resourceMock], 'uri2', true],
-
         ];
     }
 }
