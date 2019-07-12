@@ -22,6 +22,7 @@ namespace oat\taoOffline\scripts\update;
 
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterTestCenterFormService;
 use oat\taoOffline\scripts\tools\byOrganisationId\RewriteTestCenterManagerService;
+use oat\taoOffline\scripts\tools\byOrganisationId\SetupTestCenterImporterByOrgId;
 
 class Updater extends \common_ext_ExtensionUpdater
 {
@@ -32,6 +33,7 @@ class Updater extends \common_ext_ExtensionUpdater
         if ($this->isVersion('2.2.1')) {
             $this->runExtensionScript(RewriteTestCenterManagerService::class);
             $this->runExtensionScript(RegisterTestCenterFormService::class);
+            $this->runExtensionScript(SetupTestCenterImporterByOrgId::class);
             $this->setVersion('2.3.0');
         }
     }

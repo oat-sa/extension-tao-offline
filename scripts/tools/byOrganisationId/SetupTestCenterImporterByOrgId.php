@@ -22,6 +22,7 @@ namespace oat\taoOffline\scripts\tools\byOrganisationId;
 use oat\oatbox\extension\InstallAction;
 use oat\oatbox\service\exception\InvalidServiceManagerException;
 use oat\tao\model\import\service\ImportMapperInterface;
+use oat\taoOffline\model\import\TestCenterMapper;
 use oat\taoSync\model\synchronizer\custom\byOrganisationId\testcenter\TestCenterByOrganisationId;
 use oat\taoTestCenter\model\import\TestCenterCsvImporterFactory;
 
@@ -40,6 +41,7 @@ class SetupTestCenterImporterByOrgId extends InstallAction
         /** @var TestCenterCsvImporterFactory $importerFactory */
         $importerFactory = $this->getServiceLocator()->get(TestCenterCsvImporterFactory::SERVICE_ID);
         $schema = $importerFactory->getOption(TestCenterCsvImporterFactory::OPTION_DEFAULT_SCHEMA);
+        $mappers = $importerFactory->getOption(TestCenterCsvImporterFactory::OPTION_MAPPERS);
 
         $schema[ImportMapperInterface::OPTION_SCHEMA_MANDATORY] = array_merge(
             $schema[ImportMapperInterface::OPTION_SCHEMA_MANDATORY],
@@ -47,6 +49,12 @@ class SetupTestCenterImporterByOrgId extends InstallAction
         );
 
         $importerFactory->setOption(TestCenterCsvImporterFactory::OPTION_DEFAULT_SCHEMA, $schema);
+        $mapper = $importerFactory->create('default')->getMapper();
+
+        $mappers['default'][TestCenterCsvImporterFactory::OPTION_MAPPERS_MAPPER]
+            = new TestCenterMapper($mapper->getOptions());
+
+        $importerFactory->setOption(TestCenterCsvImporterFactory::OPTION_MAPPERS, $mappers);
 
         $this->getServiceManager()->register(TestCenterCsvImporterFactory::SERVICE_ID, $importerFactory);
 
