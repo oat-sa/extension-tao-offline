@@ -28,7 +28,6 @@ use PHPUnit_Framework_MockObject_MockObject;
 
 class TestCenterFormServiceTest extends TestCase
 {
-
     /**
      * @var TestCenterFormService|PHPUnit_Framework_MockObject_MockObject
      */
@@ -51,7 +50,6 @@ class TestCenterFormServiceTest extends TestCase
             ->getMock();
 
         $this->serviceMock->method('getClass')->willReturn($this->classMock);
-
     }
 
     /**
