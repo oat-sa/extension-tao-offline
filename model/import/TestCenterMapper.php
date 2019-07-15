@@ -46,7 +46,7 @@ class TestCenterMapper extends OntologyMapper
      * @param array $data
      * @throws UniqueFieldException|common_Exception
      */
-    private function validateUniqueProperties(array $data)
+    public function validateUniqueProperties(array $data)
     {
        if (!$this->getValidator()->validateOrganisationIdValue($data['organisation id'])) {
            throw new UniqueFieldException(
