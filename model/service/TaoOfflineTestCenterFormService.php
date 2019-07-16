@@ -55,11 +55,21 @@ class TaoOfflineTestCenterFormService extends TestCenterFormService
             ['recursive' => true, 'like' => false]
         );
 
-        if ($uri && count($resources) == 1 && current($resources)->getUri() === $uri) {
-            return true;
+        if ($uri && count($resources) === 1) {
+            return $this->isSameResource(current($resources), $uri);
         }
 
         return count($resources) === 0;
+    }
+
+    /**
+     * @param core_kernel_classes_Resource $resource
+     * @param string $uri
+     * @return bool
+     */
+    private function isSameResource(core_kernel_classes_Resource $resource, $uri)
+    {
+        return $resource->getUri() === $uri;
     }
 
     /**
