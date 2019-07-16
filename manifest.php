@@ -35,6 +35,9 @@ return array(
     ),
     'update' => oat\taoOffline\scripts\update\Updater::class,
     'managementRole' => 'http://www.tao.lu/Ontologies/generis.rdf#taoOfflineManager',
+    'routes' => array(
+        '/taoOffline/api' => ['class' => \oat\taoOffline\model\routing\ApiRoute::class],
+    ),
     'acl' => array(
         array('grant', 'http://www.tao.lu/Ontologies/generis.rdf#taoOfflineManager', array('ext'=>'taoOffline')),
     ),
