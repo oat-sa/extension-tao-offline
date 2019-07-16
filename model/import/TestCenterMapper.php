@@ -46,7 +46,7 @@ class TestCenterMapper extends OntologyMapper
      */
     private function validateUniqueProperties(array $data)
     {
-       if (!$this->getValidator()->validateOrganisationIdValue($data['organisation id'])) {
+       if (!$this->getTaoOfflineTestCenterFormService()->validateOrganisationIdValue($data['organisation id'])) {
            throw new UniqueFieldException(
                sprintf(__('Organisation id %s already exists.', $data['organisation id']))
            );
@@ -56,7 +56,7 @@ class TestCenterMapper extends OntologyMapper
     /**
      * @return TaoOfflineTestCenterFormService
      */
-    private function getValidator()
+    private function getTaoOfflineTestCenterFormService()
     {
         return $this->getServiceLocator()->get(TaoOfflineTestCenterFormService::SERVICE_ID);
     }

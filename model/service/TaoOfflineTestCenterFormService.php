@@ -39,7 +39,7 @@ class TaoOfflineTestCenterFormService extends TestCenterFormService
         core_kernel_classes_Class $clazz,
         core_kernel_classes_Resource $testCenter
     ) {
-        return new TestCenterForm($this, $clazz, $testCenter, [FormContainer::CSRF_PROTECTION_OPTION => true]);
+        return new TestCenterForm($clazz, $testCenter, [FormContainer::CSRF_PROTECTION_OPTION => true]);
     }
 
     /**
