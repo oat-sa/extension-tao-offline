@@ -50,10 +50,13 @@ class RestTestCenter extends ParentRestTestCenterController
             throw new common_exception_RestApi('Missed required parameter: organisationId');
         }
 
-        $this->getValidatorsService()->validateOrganisationIdValue(
+        if(!$this->getValidatorsService()->validateOrganisationIdValue(
             $values[self::PARAMETER_TEST_CENTER_ORGANISATION_ID],
             array_key_exists('uri', $values) ? $values['uri'] : null
-        );
+        )) {
+            throw new common_exception_RestApi('OrganisationId should be unique');
+        }
+
         $propertiesValues[self::PARAMETER_TEST_CENTER_ORGANISATION_ID]
             = $values[self::PARAMETER_TEST_CENTER_ORGANISATION_ID];
         return $propertiesValues;
