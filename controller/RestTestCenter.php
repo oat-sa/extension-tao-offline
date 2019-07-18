@@ -47,7 +47,7 @@ class RestTestCenter extends ParentRestTestCenterController
         $propertiesValues = parent::prepareRequestData($values);
 
         if (empty($values[self::PARAMETER_TEST_CENTER_ORGANISATION_ID])) {
-            throw new common_exception_RestApi ('Missed required parameter: label');
+            throw new common_exception_RestApi('Missed required parameter: organisationId');
         }
 
         $uri = array_key_exists('uri', $values) ? $values['uri'] : null;
