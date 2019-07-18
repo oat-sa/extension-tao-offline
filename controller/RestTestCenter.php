@@ -44,10 +44,8 @@ class RestTestCenter extends ParentRestTestCenterController
      */
     protected function prepareRequestData(array $values)
     {
-        $propertiesValues = parent:: prepareRequestData($values);
-        if (!array_key_exists(self::PARAMETER_TEST_CENTER_ORGANISATION_ID, $values)) {
-            throw new common_exception_RestApi ('organisation id required');
-        }
+        $propertiesValues = parent::prepareRequestData($values);
+
         if (empty($values[self::PARAMETER_TEST_CENTER_ORGANISATION_ID])) {
             throw new common_exception_RestApi ('organisation id required');
         }
