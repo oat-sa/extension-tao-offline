@@ -30,7 +30,7 @@ return array(
     'version' => '2.4.0',
     'author' => 'Open Assessment Technologies SA',
     'requires' => array(
-        'taoTestCenter' => '>=8.1.0',
+        'taoTestCenter' => '>=8.2.0',
         'taoSync' => '>=4.2.0'
     ),
     'update' => oat\taoOffline\scripts\update\Updater::class,
