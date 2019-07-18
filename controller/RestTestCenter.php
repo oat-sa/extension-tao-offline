@@ -44,36 +44,21 @@ class RestTestCenter extends ParentRestTestCenterController
      */
     protected function prepareRequestData(array $values)
     {
-        $propertiesValues = [];
+        $propertiesValues = parent:: prepareRequestData($values);
+        if (!array_key_exists(self::PARAMETER_TEST_CENTER_ORGANISATION_ID, $values)) {
+            throw new common_exception_RestApi ('organisation id required');
+        }
+        if (empty($values[self::PARAMETER_TEST_CENTER_ORGANISATION_ID])) {
+            throw new common_exception_RestApi ('organisation id required');
+        }
+
         $uri = array_key_exists('uri', $values) ? $values['uri'] : null;
-
-        foreach ($values as $name => $value) {
-            if (array_key_exists($name, $this->parametersMap)) {
-                $this->validateParameter($name, $value, $uri);
-                $propertiesValues[$this->parametersMap[$name]] = $value;
-            }
-        }
+        $this->getValidatorsService()->validateOrganisationIdValue(
+            $values[self::PARAMETER_TEST_CENTER_ORGANISATION_ID],
+            $uri
+        );
+        $propertiesValues[$values[self::PARAMETER_TEST_CENTER_ORGANISATION_ID]] = $uri;
         return $propertiesValues;
-    }
-
-    /**
-     * @param string $name
-     * @param string $propertyValue
-     * @param string|null $uri
-     * @throws common_exception_RestApi|common_exception_Error
-     */
-    private function validateParameter($name, $propertyValue, $uri = null)
-    {
-        if (empty($propertyValue)) {
-            throw new common_exception_RestApi(sprintf(__('%s is required'), $name), 400);
-        }
-
-        if (
-            $name === self::PARAMETER_TEST_CENTER_ORGANISATION_ID
-            && !$this->getValidatorsService()->validateOrganisationIdValue($propertyValue, $uri)
-        ) {
-            throw new common_exception_RestApi(sprintf(__('%s must be unique'), $name), 400);
-        }
     }
 
     /**
