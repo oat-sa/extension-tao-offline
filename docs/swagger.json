@@ -1,0 +1,177 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "TAO Test Center API",
+    "version": "0.1"
+  },
+  "paths": {
+    "/taoOffline/api/testCenter": {
+      "post": {
+        "tags": [
+          "testCenter"
+        ],
+        "summary": "Create new test center",
+        "description": "Create new test center with organisation id parameter",
+        "operationId": "oat\\taoOffline\\controller\\RestTestCenter::post",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "label",
+                  "organisationId"
+                ],
+                "properties": {
+                  "label": {
+                    "description": "Test center label",
+                    "type": "string"
+                  },
+                  "organisationId": {
+                    "description": "Test center organisationId",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created test center URI",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "success": {
+                      "description": "`false` on failure, `true` on success",
+                      "type": "boolean"
+                    },
+                    "uri": {
+                      "description": "Created test center URI",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object",
+                  "example": {
+                    "success": true,
+                    "uri": "http://sample/first.rdf#i1536680377163171"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters (empty or organisation id already exist)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "success": false,
+                    "errorCode": 400,
+                    "errorMsg": "organisationId must be unique",
+                    "version": "3.3.0-sprint106"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "eligibility"
+        ],
+        "summary": "Update test center",
+        "description": "Update test center label or organisation id",
+        "operationId": "oat\\taoOffline\\controller\\RestTestCenter::put",
+        "parameters": [
+          {
+            "name": "testCenter",
+            "in": "query",
+            "description": "Test center (Url encoded)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "label": {
+                    "description": "Test center label",
+                    "type": "string"
+                  },
+                  "organisationId": {
+                    "description": "Test center organisationId",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated test center uri",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "success": {
+                      "description": "`false` on failure, `true` on success",
+                      "type": "boolean"
+                    },
+                    "uri": {
+                      "description": "Updated test center URI",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object",
+                  "example": {
+                    "success": true,
+                    "uri": "http://sample/first.rdf#i1536680377163171"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters (empty or organisation id already exist)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "success": false,
+                    "errorCode": 400,
+                    "errorMsg": "organisationId must be unique",
+                    "version": "3.3.0-sprint106"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Test center not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "success": false,
+                    "errorCode": 404,
+                    "errorMsg": "Resource with `http://sample/first.rdf#i1536680377656966s` uri not found",
+                    "version": "3.3.0-sprint85"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

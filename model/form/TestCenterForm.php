@@ -40,12 +40,15 @@ class TestCenterForm extends tao_actions_form_Instance
 
         if ($element) {
             $element->addValidator(
-                tao_helpers_form_FormFactory::getValidator('Callback', [
-                    'message' => __('Organisation Id must be unique'),
-                    'object' => $this->getTestCenterFormService(),
-                    'method' => 'validateOrganisationIdValue',
-                    'param' => $this->instance ? $this->instance->getUri() : null
-                ])
+                tao_helpers_form_FormFactory::getValidator(
+                    'Callback',
+                    [
+                        'message' => __('Organisation Id must be unique'),
+                        'object' => $this->getTestCenterFormService(),
+                        'method' => 'validateOrganisationIdValue',
+                        'param' => $this->instance ? $this->instance->getUri() : null
+                    ]
+                )
             );
         }
     }
