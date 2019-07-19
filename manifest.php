@@ -27,14 +27,17 @@ return array(
     'label' => 'Tao Offline',
     'description' => 'An extension to assist the setup of an offline context. Setup synchronisation and encryption by test center identifier',
     'license' => 'GPL-2.0',
-    'version' => '2.2.1',
+    'version' => '2.4.0',
     'author' => 'Open Assessment Technologies SA',
     'requires' => array(
-        'taoTestCenter' => '>=3.15.0',
+        'taoTestCenter' => '>=8.2.0',
         'taoSync' => '>=4.2.0'
     ),
     'update' => oat\taoOffline\scripts\update\Updater::class,
     'managementRole' => 'http://www.tao.lu/Ontologies/generis.rdf#taoOfflineManager',
+    'routes' => array(
+        '/taoOffline/api' => ['class' => \oat\taoOffline\model\routing\ApiRoute::class],
+    ),
     'acl' => array(
         array('grant', 'http://www.tao.lu/Ontologies/generis.rdf#taoOfflineManager', array('ext'=>'taoOffline')),
     ),
