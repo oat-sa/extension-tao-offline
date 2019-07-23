@@ -204,19 +204,17 @@ class RestTestCenter extends ParentRestTestCenterController
     {
         $propertiesValues = parent::validateRequestParameters($values);
 
-        if (empty($values[self::PARAMETER_TEST_CENTER_ORGANISATION_ID])) {
-            throw new common_exception_RestApi('Missed required parameter: organisationId', 400);
-        }
+        if (array_key_exists(self::PARAMETER_TEST_CENTER_ORGANISATION_ID, $values)) {
+            if (!$this->getValidatorsService()->validateOrganisationIdValue(
+                $values[self::PARAMETER_TEST_CENTER_ORGANISATION_ID],
+                array_key_exists('uri', $values) ? $values['uri'] : null
+            )) {
+                throw new common_exception_RestApi('OrganisationId should be unique', 400);
+            }
 
-        if (!$this->getValidatorsService()->validateOrganisationIdValue(
-            $values[self::PARAMETER_TEST_CENTER_ORGANISATION_ID],
-            array_key_exists('uri', $values) ? $values['uri'] : null
-        )) {
-            throw new common_exception_RestApi('OrganisationId should be unique', 400);
+            $propertiesValues[TestCenterByOrganisationId::ORGANISATION_ID_PROPERTY]
+                = $values[self::PARAMETER_TEST_CENTER_ORGANISATION_ID];
         }
-
-        $propertiesValues[self::PARAMETER_TEST_CENTER_ORGANISATION_ID]
-            = $values[self::PARAMETER_TEST_CENTER_ORGANISATION_ID];
         return $propertiesValues;
     }
 
