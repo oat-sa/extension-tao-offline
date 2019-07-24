@@ -29,12 +29,15 @@ use oat\taoEncryption\scripts\tools\SetupEncryptedStateStorage;
 use oat\taoEncryption\scripts\tools\SetupEncryptedSyncResult;
 use oat\taoEncryption\scripts\tools\SetupEncryptedUser;
 use oat\taoEncryption\scripts\tools\SetupUserSynchronizer;
+use oat\taoOauth\model\bootstrap\Oauth2SessionBuilder;
+use oat\taoOauth\model\bootstrap\OAuth2Type;
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterTestCenterFormService;
 use oat\taoOffline\scripts\tools\byOrganisationId\RewriteTestCenterManagerService;
 use oat\taoOffline\scripts\tools\byOrganisationId\SetupSyncFormByOrgId;
 use oat\taoOffline\scripts\tools\byOrganisationId\SetupTestCenterImporterByOrgId;
 use oat\taoOffline\scripts\tools\PostSetup\Client\DetachDeliveryCreateListeners;
 use oat\taoOffline\scripts\tools\PostSetup\Client\SwitchLockoutOff;
+use oat\taoPublishing\scripts\tools\RegisterPublishingAuthTypeAction;
 use oat\taoSync\scripts\install\AttachReactivateDeliveryExecutionEvent;
 use oat\taoSync\scripts\tool\RegisterHandShakeAuthAdapter;
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterSyncServiceByOrgId;
@@ -77,6 +80,11 @@ class SetupClientServer extends ScriptAction
 
         $report->add($this->runScript(RegisterSyncServiceByOrgId::class));
         $report->add($this->runScript(RegisterHandShakeAuthAdapter::class));
+        $report->add($this->runScript(RegisterPublishingAuthTypeAction::class, [
+            '-a', OAuth2Type::class,
+            '-b', Oauth2SessionBuilder::class,
+            '-w'
+        ]));
         $report->add($this->runScript(SetupSyncFormByOrgId::class));
         $report->add($this->runScript(SwitchLockoutOff::class));
         $report->add($this->runScript(AttachReactivateDeliveryExecutionEvent::class));
