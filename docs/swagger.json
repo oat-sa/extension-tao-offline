@@ -29,6 +29,14 @@
                   "organisationId": {
                     "description": "Test center organisationId",
                     "type": "string"
+                  },
+                  "class-uri": {
+                    "description": "Class uri to import item. If not specified root class will be used.",
+                    "type": "string"
+                  },
+                  "class-label": {
+                    "description": "Label of class to import item. If not specified root class will be used.\n   * If label is not unique first match will be used.",
+                    "type": "string"
                   }
                 },
                 "type": "object"
