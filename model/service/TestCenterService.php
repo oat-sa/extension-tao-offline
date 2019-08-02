@@ -27,7 +27,7 @@ use core_kernel_classes_Resource;
 use League\Flysystem\FileExistsException;
 use oat\tao\model\GenerisServiceTrait;
 use oat\taoSync\model\synchronizer\custom\byOrganisationId\testcenter\TestCenterByOrganisationId;
-use oat\taoTestCenter\model\TestCenterService as OriginTestCenterService;
+use oat\taoSync\model\testCenter\TestCenterService as OriginTestCenterService;
 
 class TestCenterService extends OriginTestCenterService
 {
