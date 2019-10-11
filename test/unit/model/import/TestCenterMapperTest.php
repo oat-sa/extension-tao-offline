@@ -24,12 +24,12 @@ use oat\tao\model\import\service\MandatoryFieldException;
 use oat\taoOffline\model\import\TestCenterMapper;
 use oat\taoOffline\model\import\UniqueFieldException;
 use oat\taoOffline\model\service\TaoOfflineTestCenterFormService;
-use PHPUnit_Framework_MockObject_MockObject;
+use oat\generis\test\MockObject;
 
 class TestCenterMapperTest extends TestCase
 {
     /**
-     * @var TaoOfflineTestCenterFormService|PHPUnit_Framework_MockObject_MockObject
+     * @var TaoOfflineTestCenterFormService|MockObject
      */
     private $serviceMock;
 

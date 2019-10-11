@@ -24,17 +24,17 @@ use core_kernel_classes_Class;
 use core_kernel_classes_Resource;
 use oat\generis\test\TestCase;
 use oat\taoOffline\model\service\TaoOfflineTestCenterFormService;
-use PHPUnit_Framework_MockObject_MockObject;
+use oat\generis\test\MockObject;
 
 class TestCenterFormServiceTest extends TestCase
 {
     /**
-     * @var TaoOfflineTestCenterFormService|PHPUnit_Framework_MockObject_MockObject
+     * @var TaoOfflineTestCenterFormService|MockObject
      */
     private $serviceMock;
 
     /**
-     * @var core_kernel_classes_Class|PHPUnit_Framework_MockObject_MockObject
+     * @var core_kernel_classes_Class|MockObject
      */
     private $classMock;
 
