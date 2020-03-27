@@ -27,10 +27,10 @@ return array(
     'label' => 'Tao Offline',
     'description' => 'An extension to assist the setup of an offline context. Setup synchronisation and encryption by test center identifier',
     'license' => 'GPL-2.0',
-    'version' => '3.0.0',
+    'version' => '3.1.0',
     'author' => 'Open Assessment Technologies SA',
     'requires' => array(
-        'generis'       => '>=12.5.0',
+        'generis'       => '>=12.15.0',
         'taoTestCenter' => '>=8.2.0',
         'taoSync'       => '>=4.2.0',
         'taoPublishing' => '>=2.1.1',
