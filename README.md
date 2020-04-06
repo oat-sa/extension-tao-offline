@@ -47,7 +47,7 @@ Again, instances with `taoEncryption` will benefit from encryption.
 ![Sequence Diagram](docs/sync_flow.png)
 
 #### Synchronizing users with encryption
-Every user has been assigned an `application ID` that is used to grant access to the delivery content. Properties that are excluded from the synchronization process can be found under `excludedProperties` in the configuration file `config/taoSync/syncService.conf.php`.  Properties that are encrypted are defined inside `config/taoEncryption/encryptUserSyncFormatter.conf.php`.
+Every user has been assigned an application key that is used to decrypt the delivery content. Properties that are excluded from the synchronization process can be found under `excludedProperties` in the configuration file `config/taoSync/syncService.conf.php`.  Properties that are encrypted are defined inside `config/taoEncryption/encryptUserSyncFormatter.conf.php`.
 
 ![Synchronizing users](docs/sync_users.png)
 
