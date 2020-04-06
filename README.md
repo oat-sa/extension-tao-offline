@@ -27,18 +27,19 @@ sudo -u www-data php index.php 'oat\taoOffline\scripts\tools\setup\SetupCentralS
 
 Again, instances with `taoEncryption` will benefit from encryption.
 
-#### Types of available synchrounizations
-* Test Center Based on the `OrganisationId`
-    * Users:
-        * Test Takers
-        * Proctor Administrators
-        * Proctor
-        * Eligibility
-        * Deliveries
-* Results   
-* Result Logs
-
-
+#### Types of available synchronizations
+* Central Server to VM:
+    * Test Centers
+    * Users
+    * Deliveries
+    * Eligibilities
+    * LTI Consumers
+* VM to Central Server:
+    * Test Sessions
+    * Results
+    * Result Logs
+    * LTI Users
+    
 #### Overview of the workflow
 ![Overview workflow](docs/overview_sync.png)
 
