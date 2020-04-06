@@ -1,29 +1,31 @@
 ## Synchronisation & Encryption
 #### Synchronisation
-The sync process consists in having two actors, one is the ClientServer, which exists on a Virtual Machine and the second one being the CentralServer.
+The sync process is based upon two actors, the ClientServer, which is installed on a Virtual Machine and  the CentralServer.
 
-##### Setup ClientServer
-The fallowing script needs to be run on TAO instance in order to make a client server.
+##### Setting up ClientServer
+The following script needs to be run on a TAO instance in order to create a Client Server.
 
 ```php
 sudo -u www-data php index.php '\oat\taoOffline\scripts\tools\setup\SetupClientServer'
 ```
-    In case taoEncryption it's installed this script it's gonna setup the instance with encryption.
+
+On systems where [extension-tao-encryption](https://github.com/oat-sa/extension-tao-encryption) is installed the script will set it up with encryption.
     
- In order to point this instance to a specific server the fallowing command needs to be run
+Point the instance to a specific server by executing the following command:
  
  ```php
-    sudo -u www-data php index.php '\oat\taoSync\scripts\tool\RegisterHandShakeRootURL' --rootUrl=http://tao-central.dev/
+sudo -u www-data php index.php '\oat\taoSync\scripts\tool\RegisterHandShakeRootURL' --rootUrl=http://tao-central.dev/
  ```
  
  
-##### Setup CentralServer
-The fallowing script needs to be run on TAO instance in order to make a central server.
+##### Setting up the CentralServer
+Run the following to turn a TAO instance into a Central Server.
 
 ```php
 sudo -u www-data php index.php 'oat\taoOffline\scripts\tools\setup\SetupCentralServer'
 ```
-     In case taoEncryption it's installed this script it's gonna setup the instance with encryption.
+
+Again, instances with `taoEncryption` will be set up the instance with encryption.
 
 ##### Types of Syncs available
 * Test Center Based on OrganisationId
@@ -38,13 +40,13 @@ sudo -u www-data php index.php 'oat\taoOffline\scripts\tools\setup\SetupCentralS
 
 
 ##### Overview Flow
-![alt text](docs/overview_sync.png)
+![Overview Flow](docs/overview_sync.png)
 
 ###### Sequence Diagram
-![alt text](docs/sync_flow.png)
+![Sequence Diagram](docs/sync_flow.png)
 
 ##### Sync Users with encryption
-Each users has assign to him the application id in order to have access to the delivery content.
+Every user has been assigned with an `application ID` that grants access to the delivery content.
 The properties that be excluded in the process of sync can be found in the `excludedProperties` in the config
 `config/taoSync/syncService.conf.php`
 In terms of encryption the properties that be encrypted are determined in `config/taoEncryption/encryptUserSyncFormatter.conf.php`
