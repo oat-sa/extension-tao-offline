@@ -6,7 +6,7 @@ The synchronization process is based upon two actors, the Client Server, which i
 #### Setting up the Client Server
 The following script needs to be run on a TAO instance in order to create a Client Server:
 
-```php
+```shell
 sudo -u www-data php index.php '\oat\taoOffline\scripts\tools\setup\SetupClientServer'
 ```
 
@@ -14,14 +14,14 @@ On systems where [extension-tao-encryption](https://github.com/oat-sa/extension-
     
 Point the instance to a specific server by executing the following command:
  
- ```php
+ ```shell
 sudo -u www-data php index.php '\oat\taoSync\scripts\tool\RegisterHandShakeRootURL' --rootUrl=http://tao-central.dev/
  ```
 
 #### Setting up the Central Server
 Run the following to turn a TAO instance into a Central Server.
 
-```php
+```shell
 sudo -u www-data php index.php 'oat\taoOffline\scripts\tools\setup\SetupCentralServer'
 ```
 
