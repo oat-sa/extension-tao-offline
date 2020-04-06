@@ -30,13 +30,13 @@ Again, instances with `taoEncryption` will benefit from encryption.
 #### Types of available synchrounizations
 * Test Center Based on the `OrganisationId`
     * Users:
-        * Test Takers
-        * Proctor Administrators
-        * Proctor
-        * Eligibility
-        * Deliveries
- * Results   
- * Results Logs
+      * Test Takers
+      * Proctor Administrators
+      * Proctor
+      * Eligibility
+      * Deliveries
+* Results   
+* Result Logs
 
 
 #### Overview of the workflow
