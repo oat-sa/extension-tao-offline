@@ -28,13 +28,13 @@ sudo -u www-data php index.php 'oat\taoOffline\scripts\tools\setup\SetupCentralS
 Again, instances with `taoEncryption` will benefit from encryption.
 
 #### Types of available synchronizations
-* Central Server to VM:
+* Central Server to VM
     * Test Centers
     * Users
     * Deliveries
     * Eligibilities
     * LTI Consumers
-* VM to Central Server:
+* VM to Central Server
     * Test Sessions
     * Results
     * Result Logs
