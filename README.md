@@ -4,7 +4,7 @@
 The synchronization process is based upon two actors, the Client Server, which is installed on a Virtual Machine, and the Central Server.
 
 #### Setting up the Client Server
-The following script needs to be run on a TAO instance in order to create a Client Server.
+The following script needs to be run on a TAO instance in order to create a Client Server:
 
 ```php
 sudo -u www-data php index.php '\oat\taoOffline\scripts\tools\setup\SetupClientServer'
