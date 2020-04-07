@@ -6,9 +6,7 @@
 ![GitHub release](https://img.shields.io/github/release/oat-sa/extension-tao-offline.svg)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/oat-sa/extension-tao-offline.svg)
 
-> Short description of `oat-sa/extension-tao-offline`
-
-Long description of `oat-sa/extension-tao-offline`
+> TAO Offline Capability offers schools the possibility to take assessments in environments with unstable internet connections. It uses Virtual Machines (VM) and a Central Server (CS). The assessment is performed on the VMs that contain a TAO installation as well as the tests. At the end the results of the test will be synchronized with the Central Server. This extension handles the synchronization process.
 
 ## Installation instructions
 
@@ -17,19 +15,19 @@ These instructions assume that you have already a TAO installation on your syste
 
 
 Add the extension to your TAO composer and to the autoloader:
-```bash
+```shell
 composer require oat-sa/extension-tao-offline
 ```
 
 Install the extension on the CLI from the project root:
 
 **Linux:**
-```bash
+```shell
 sudo php tao/scripts/installExtension oat-sa/extension-tao-offline
 ```
 
 **Windows:**
-```bash
+```shell
 php tao\scripts\installExtension oat-sa/extension-tao-offline
 ```
 
