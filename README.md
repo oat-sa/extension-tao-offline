@@ -1,3 +1,42 @@
+# TAO _taoOffline_ extension
+
+![TAO Logo](https://github.com/oat-sa/taohub-developer-guide/raw/master/resources/tao-logo.png)
+
+![GitHub](https://img.shields.io/github/license/oat-sa/extension-tao-offline.svg)
+![GitHub release](https://img.shields.io/github/release/oat-sa/extension-tao-offline.svg)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/oat-sa/extension-tao-offline.svg)
+
+> Short description of `oat-sa/extension-tao-offline`
+
+Long description of `oat-sa/extension-tao-offline`
+
+## Installation instructions
+
+These instructions assume that you have already a TAO installation on your system. If you don't, go to
+[package/tao](https://github.com/oat-sa/package-tao) and follow the installation instructions.
+
+
+Add the extension to your TAO composer and to the autoloader:
+```bash
+composer require oat-sa/extension-tao-offline
+```
+
+Install the extension on the CLI from the project root:
+
+**Linux:**
+```bash
+sudo php tao/scripts/installExtension oat-sa/extension-tao-offline
+```
+
+**Windows:**
+```bash
+php tao\scripts\installExtension oat-sa/extension-tao-offline
+```
+
+As a system administrator you can also install it through the TAO Extension Manager:
+- Settings (the gears on the right hand side of the menu) -> Extension manager
+- Select _taoOffline_ on the right hand side, check the box and hit _install_
+
 ## Synchronization and Encryption
 
 ### Synchronization
