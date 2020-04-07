@@ -1,4 +1,4 @@
-# TAO _taoOffline_ extension
+# TAO Offline Extension
 
 ![TAO Logo](https://github.com/oat-sa/taohub-developer-guide/raw/master/resources/tao-logo.png)
 
