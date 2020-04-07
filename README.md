@@ -1,6 +1,6 @@
-## Synchronisation and Encryption
+## Synchronization and Encryption
 
-### Synchronisation
+### Synchronization
 The synchronization process is based upon two actors, the Client Server, which is installed on a Virtual Machine, and the Central Server.
 
 #### Setting up the Client Server
