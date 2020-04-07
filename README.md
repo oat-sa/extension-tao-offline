@@ -10,7 +10,7 @@
 
 ## Installation instructions
 
-These instructions assume that you have already a TAO installation on your system. If you don't, go to
+These instructions assume that you already have a TAO installation on your system. If you don't, go to
 [package/tao](https://github.com/oat-sa/package-tao) and follow the installation instructions.
 
 
