@@ -6,7 +6,7 @@
 ![GitHub release](https://img.shields.io/github/release/oat-sa/extension-tao-offline.svg)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/oat-sa/extension-tao-offline.svg)
 
-> TAO Offline Capability offers schools the possibility to take assessments in environments with unstable internet connections. It uses Virtual Machines (VM) and a Central Server (CS). The assessment is performed on the VMs that contain a TAO installation as well as the tests. At the end the results of the test will be synchronized with the Central Server. This extension handles the synchronization process.
+> TAO Offline Capability offers schools the possibility to take assessments in environments with unstable internet connections. It uses Virtual Machines (VM) and a Central Server (CS). The assessment is performed on the VMs that contain a TAO installation as well as the tests. At the end the results of the test will be synchronized with the Central Server. 
 
 ## Installation instructions
 
