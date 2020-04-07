@@ -32,8 +32,8 @@ php tao\scripts\installExtension oat-sa/extension-tao-offline
 ```
 
 As a system administrator you can also install it through the TAO Extension Manager:
-- Settings (the gears on the right hand side of the menu) -> Extension manager
-- Select _taoOffline_ on the right hand side, check the box and hit _install_
+- Settings (the gears on the right-hand side of the menu) -> Extension manager
+- Select _taoOffline_ on the right-hand side, check the box and hit _install_
 
 ## Synchronization and Encryption
 
