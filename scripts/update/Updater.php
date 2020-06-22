@@ -28,6 +28,9 @@ use oat\taoSync\model\synchronizer\custom\byOrganisationId\testcenter\TestCenter
 use oat\taoTestCenter\model\import\TestCenterCsvImporterFactory;
 use oat\taoTestCenter\model\TestCenterFormService;
 
+/**
+ * @deprecated use migrations instead. See https://github.com/oat-sa/generis/wiki/Tao-Update-Process
+ */
 class Updater extends \common_ext_ExtensionUpdater
 {
     public function update($initialVersion)
@@ -75,5 +78,10 @@ class Updater extends \common_ext_ExtensionUpdater
         }
 
         $this->skip('2.3.0', '3.1.0');
+        
+        //Updater files are deprecated. Please use migrations.
+        //See: https://github.com/oat-sa/generis/wiki/Tao-Update-Process
+
+        $this->setVersion($this->getExtension()->getManifest()->getVersion());
     }
 }
