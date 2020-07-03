@@ -1,81 +1,108 @@
-## Synchronisation & Encryption
-#### Synchronisation
-The sync process consists in having two actors, one is the ClientServer, which exists on a Virtual Machine and the second one being the CentralServer.
+# TAO Offline Extension
 
-##### Setup ClientServer
-The fallowing script needs to be run on TAO instance in order to make a client server.
+![TAO Logo](https://github.com/oat-sa/taohub-developer-guide/raw/master/resources/tao-logo.png)
 
-```php
+![GitHub](https://img.shields.io/github/license/oat-sa/extension-tao-offline.svg)
+![GitHub release](https://img.shields.io/github/release/oat-sa/extension-tao-offline.svg)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/oat-sa/extension-tao-offline.svg)
+
+> TAO Offline Capability offers schools the possibility to take assessments in environments with unstable internet connections. It uses Virtual Machines (VM) and a Central Server (CS). The assessment is performed on the VMs that contain a TAO installation as well as the tests. At the end the results of the test will be synchronized with the Central Server. 
+
+## Installation instructions
+
+These instructions assume that you already have a TAO installation on your system. If you don't, go to
+[package/tao](https://github.com/oat-sa/package-tao) and follow the installation instructions.
+
+
+Add the extension to your TAO composer and to the autoloader:
+```shell
+composer require oat-sa/extension-tao-offline
+```
+
+Install the extension on the CLI from the project root:
+
+**Linux:**
+```shell
+sudo php tao/scripts/installExtension oat-sa/extension-tao-offline
+```
+
+**Windows:**
+```shell
+php tao\scripts\installExtension oat-sa/extension-tao-offline
+```
+
+As a system administrator you can also install it through the TAO Extension Manager:
+- Settings (the gears on the right-hand side of the menu) -> Extension manager
+- Select _taoOffline_ on the right-hand side, check the box and hit _install_
+
+## Synchronization and Encryption
+
+### Synchronization
+The synchronization process is based upon two actors, the Client Server, which is installed on a Virtual Machine, and the Central Server.
+
+#### Setting up the Client Server
+The following script needs to be run on a TAO instance in order to create a Client Server:
+
+```shell
 sudo -u www-data php index.php '\oat\taoOffline\scripts\tools\setup\SetupClientServer'
 ```
-    In case taoEncryption it's installed this script it's gonna setup the instance with encryption.
-    
- In order to point this instance to a specific server the fallowing command needs to be run
- 
- ```php
-    sudo -u www-data php index.php '\oat\taoSync\scripts\tool\RegisterHandShakeRootURL' --rootUrl=http://tao-central.dev/
- ```
- 
- 
-##### Setup CentralServer
-The fallowing script needs to be run on TAO instance in order to make a central server.
 
-```php
+On systems where [extension-tao-encryption](https://github.com/oat-sa/extension-tao-encryption) is installed, the script will set it up with encryption.
+    
+Point the instance to a specific server by executing the following command:
+ 
+ ```shell
+sudo -u www-data php index.php '\oat\taoSync\scripts\tool\RegisterHandShakeRootURL' --rootUrl=http://tao-central.dev/
+ ```
+
+#### Setting up the Central Server
+Run the following to turn a TAO instance into a Central Server.
+
+```shell
 sudo -u www-data php index.php 'oat\taoOffline\scripts\tools\setup\SetupCentralServer'
 ```
-     In case taoEncryption it's installed this script it's gonna setup the instance with encryption.
 
-##### Types of Syncs available
-* Test Center Based on OrganisationId
-    * Users:
-        * Test Takers
-        * Proctor Administrators
-        * Proctor
-        * Eligibility
-        * Deliveries
- * Results   
- * Results Logs
+Again, instances with `taoEncryption` will benefit from encryption.
 
+#### Types of available synchronizations
+* Central Server to VM
+    * Test Centers
+    * Users
+    * Deliveries
+    * Eligibilities
+    * LTI Consumers
+* VM to Central Server
+    * Test Sessions
+    * Results
+    * Result Logs
+    * LTI Users
+    
+#### Overview of the workflow
+![Overview workflow](docs/overview_sync.png)
 
-##### Overview Flow
-![alt text](docs/overview_sync.png)
+##### Sequence Diagram
+![Sequence Diagram](docs/sync_flow.png)
 
-###### Sequence Diagram
-![alt text](docs/sync_flow.png)
+#### Synchronizing users with encryption
+Every user has been assigned an application key that is used to decrypt the delivery content. Properties that are excluded from the synchronization process can be found under `excludedProperties` in the configuration file `config/taoSync/syncService.conf.php`.  Properties that are encrypted are defined inside `config/taoEncryption/encryptUserSyncFormatter.conf.php`.
 
-##### Sync Users with encryption
-Each users has assign to him the application id in order to have access to the delivery content.
-The properties that be excluded in the process of sync can be found in the `excludedProperties` in the config
-`config/taoSync/syncService.conf.php`
-In terms of encryption the properties that be encrypted are determined in `config/taoEncryption/encryptUserSyncFormatter.conf.php`
+![Synchronizing users](docs/sync_users.png)
 
+#### Synchronizing deliveries with encryption
+During the synchronization of the deliveries, the test package is sent to the client. The client then imports the test and generates a delivery. 
 
-![alt text](docs/sync_users.png)
+_Note: If you are synchronizing a delivery that already exists on the VM a new import of the test will be created._
 
-##### Sync Deliveries with encryption
-On each delivery sync the test package it's send to the client, the client it's importing the test and generating a delivery. 
-_Note_: 
-> In a case that we are syncing a delivery already existing on the VM a new import of the test will exist.
+![Synchronizing Deliveries](docs/sync_delivery.png)
 
-![alt text](docs/sync_delivery.png)
+##### Synchronizing results with encryption
+The `chunkSize` of a result is an essential configuration parameter that needs to be set in advance; the default is `10`. It can be set depending on the number of variables included in a result.
 
-###### Sync Results with encryption
-The results chunkSize it's a very important config that needs to be set in advance, by default it's 10. Based on the number of variables exists in a results this can be set.
-For example if you have a test of 100 items this will mean ~400 variables the total request will contain 4000 variables which will overload the server. In this case reducing the chunkSize to less it's adviced.
+If you have, for example, a test with 100 items (which means about 400 variables), the total request will contain about 4000 variables. This scenario is likely to overload the server. In this case, reducing the `chunkSize` to a smaller value is advised.
 
-The statuses of a result which needs be sent can be configurable in the same config `statusExecutionsToSync`
-The config can be found in `config/taoSync/resultService.conf.php`
-Each request to the server will include the no of results, the process will stop after all results are sent.
+The statuses of a result that needs to be sent can be configured under `statusExecutionsToSync` in `config/taoSync/resultService.conf.php`. Each request to the server will include the number of results. The process will stop after all results have been sent.
 
-![alt text](docs/sync_results.png)
+![Synchronizing Results](docs/sync_results.png)
 
-##### Sync Results Logs
-Each result log are synced to the central server in order to have a history of the test.
-The number of logs sent in one request it's determined in the config of `config/taoSync/SyncDeliveryLogService.conf.php`
-
-
-
-
-
-
-
+#### Synchronizing results - Logs
+Each result log is synchronized with the Central Server to maintain a history of the test. The number of logs sent per request is defined in the configuration inside `config/taoSync/SyncDeliveryLogService.conf.php`.
