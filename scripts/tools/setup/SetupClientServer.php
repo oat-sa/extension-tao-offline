@@ -39,6 +39,7 @@ use oat\taoOffline\scripts\tools\PostSetup\Client\DetachDeliveryCreateListeners;
 use oat\taoOffline\scripts\tools\PostSetup\Client\SwitchLockoutOff;
 use oat\taoPublishing\scripts\tools\RegisterPublishingAuthTypeAction;
 use oat\taoSync\scripts\install\AttachReactivateDeliveryExecutionEvent;
+use oat\taoSync\scripts\install\RegisterEntityChecksumCache;
 use oat\taoSync\scripts\tool\RegisterHandShakeAuthAdapter;
 use oat\taoOffline\scripts\tools\byOrganisationId\RegisterSyncServiceByOrgId;
 use oat\taoSync\scripts\tool\synchronisationHistory\SetupClientSynchronisationHistory;
@@ -95,6 +96,7 @@ class SetupClientServer extends ScriptAction
         $report->add($this->runScript(RewriteTestCenterManagerService::class));
         $report->add($this->runScript(RegisterTestCenterFormService::class));
         $report->add($this->runScript(SetupTestCenterImporterByOrgId::class));
+        $report->add($this->runScript(RegisterEntityChecksumCache::class));
 
         return $report;
     }
