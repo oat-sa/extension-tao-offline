@@ -20,7 +20,16 @@
     },
     "minimum-stability" : "dev",
     "require": {
-        "oat-sa/oatbox-extension-installer": "~1.1||dev-master"
+        "oat-sa/oatbox-extension-installer": "~1.1||dev-master",
+        "oat-sa/generis" : ">=14.0.0",
+        "oat-sa/tao-core" : ">=47.0.0",
+        "oat-sa/extension-tao-sync" : ">=8.0.0",
+        "oat-sa/extension-tao-testcenter" : ">=10.0.0",
+        "oat-sa/extension-tao-delivery-rdf" : ">=14.0.0",
+        "oat-sa/extension-tao-proctoring" : ">=20.0.0",
+        "oat-sa/extension-tao-encryption" : ">=6.0.0",
+        "oat-sa/extension-tao-oauth" : ">=6.0.0",
+        "oat-sa/extension-tao-publishing" : ">=6.0.0"
     },
     "autoload" : {
         "psr-4" : {
