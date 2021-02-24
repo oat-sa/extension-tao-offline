@@ -19,23 +19,12 @@
  *
  */
 
-/**
- * Generated using taoDevTools 3.10.0
- */
 return array(
     'name' => 'taoOffline',
     'label' => 'Tao Offline',
     'description' => 'An extension to assist the setup of an offline context. Setup synchronisation and encryption by test center identifier',
     'license' => 'GPL-2.0',
-    'version' => '3.2.0',
     'author' => 'Open Assessment Technologies SA',
-    'requires' => array(
-        'generis'       => '>=12.15.0',
-        'taoTestCenter' => '>=8.2.0',
-        'taoSync'       => '>=4.2.0',
-        'taoPublishing' => '>=2.1.1',
-        'taoOauth'      => '>=4.0.0',
-    ),
     'update' => oat\taoOffline\scripts\update\Updater::class,
     'managementRole' => 'http://www.tao.lu/Ontologies/generis.rdf#taoOfflineManager',
     'routes' => array(

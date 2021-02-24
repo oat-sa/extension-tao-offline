@@ -56,7 +56,7 @@ class TestCenterFormServiceTest extends TestCase
      * @param array $searchResult
      * @param string $url
      * @param bool $isFail
-     * @dataProvider testValidateOrganisationIdValueDataProvider
+     * @dataProvider validateOrganisationIdValueDataProvider
      * @throws common_Exception
      */
     public function testValidateOrganisationIdValue(array $searchResult, $url, $isFail)
@@ -79,7 +79,7 @@ class TestCenterFormServiceTest extends TestCase
     /**
      * @return array
      */
-    public function testValidateOrganisationIdValueDataProvider()
+    public function validateOrganisationIdValueDataProvider()
     {
         $resourceMock = $this->getMockBuilder(core_kernel_classes_Resource::class)
             ->disableOriginalConstructor()
@@ -91,7 +91,7 @@ class TestCenterFormServiceTest extends TestCase
         return [
             [[], null, false],
             [[0 => $resourceMock], null, true],
-            [[0 => $resourceMock], 'uri', false],
+            [[0 => $resourceMock], 'uri', true],
             [[0 => $resourceMock], 'uri2', true],
         ];
     }
