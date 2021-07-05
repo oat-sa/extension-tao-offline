@@ -27,7 +27,6 @@ use oat\generis\model\WidgetRdf;
 use oat\oatbox\extension\InstallAction;
 use oat\tao\helpers\form\ValidationRuleRegistry;
 use oat\tao\model\TaoOntology;
-use oat\tao\model\WidgetDefinitions;
 use oat\taoDeliveryRdf\model\ContainerRuntime;
 use oat\taoDeliveryRdf\model\DeliveryAssemblyService;
 use oat\taoSync\model\Entity;
@@ -41,6 +40,7 @@ use oat\taoSync\model\synchronizer\AbstractResourceSynchronizer;
 use oat\taoSync\model\synchronizer\testcenter\TestCenterSynchronizer;
 use oat\taoSync\model\SyncService;
 use oat\taoTestCenter\model\TestCenterService;
+use tao_helpers_form_elements_Textbox as TextBox;
 
 /**
  * Class RegisterSyncService
@@ -88,7 +88,7 @@ class RegisterSyncServiceByOrgId extends InstallAction
         $property->setLgDependent(false);
         $property->setPropertiesValues(array(
             ValidationRuleRegistry::PROPERTY_VALIDATION_RULE => 'notEmpty',
-            WidgetRdf::PROPERTY_WIDGET => WidgetDefinitions::PROPERTY_TEXTBOX,
+            WidgetRdf::PROPERTY_WIDGET => TextBox::WIDGET_ID,
             TaoOntology::PROPERTY_GUI_ORDER => 1,
         ));
     }
